@@ -1,0 +1,25 @@
+  long long int    fun(int id,int t,int arr[], vector<vector<long long int>>&dp)
+	{
+	    if(t==0)return 1;
+	    if(id==0)
+	    {
+	        if(t%arr[0]==0)return 1;
+	        else
+	        return 0;
+	    }
+	    if(dp[id][t]!=-1)return dp[id][t];
+ long long int ntake=fun(id-1,t,arr,dp);
+    long long int take=0;
+    
+    if(arr[id]<=t)
+    take=fun(id,t-arr[id],arr,dp);
+    return dp[id][t]=ntake+take;
+    
+	}
+    long long int count(int arr[], int n, int t) {
+
+       vector<vector<long long int>>dp(n,vector<long long int>(t+1,-1));
+        return fun(n-1,t,arr,dp);
+	 
+    }
+};
